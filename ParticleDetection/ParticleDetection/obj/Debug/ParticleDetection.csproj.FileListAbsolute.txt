@@ -1,0 +1,9 @@
+D:\GitHub\Particle-detection\ParticleDetection\ParticleDetection\bin\Debug\ParticleDetection.exe.config
+D:\GitHub\Particle-detection\ParticleDetection\ParticleDetection\bin\Debug\ParticleDetection.exe
+D:\GitHub\Particle-detection\ParticleDetection\ParticleDetection\bin\Debug\ParticleDetection.pdb
+D:\GitHub\Particle-detection\ParticleDetection\ParticleDetection\obj\Debug\ParticleDetection.csprojResolveAssemblyReference.cache
+D:\GitHub\Particle-detection\ParticleDetection\ParticleDetection\obj\Debug\ParticleDetection.Form1.resources
+D:\GitHub\Particle-detection\ParticleDetection\ParticleDetection\obj\Debug\ParticleDetection.Properties.Resources.resources
+D:\GitHub\Particle-detection\ParticleDetection\ParticleDetection\obj\Debug\ParticleDetection.csproj.GenerateResource.Cache
+D:\GitHub\Particle-detection\ParticleDetection\ParticleDetection\obj\Debug\ParticleDetection.exe
+D:\GitHub\Particle-detection\ParticleDetection\ParticleDetection\obj\Debug\ParticleDetection.pdb
