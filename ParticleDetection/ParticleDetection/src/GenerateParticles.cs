@@ -7,31 +7,79 @@ using System.Threading.Tasks;
 
 namespace ParticleDetection.src
 {
+    /// <summary>
+    /// 
+    /// </summary>
     class GenerateParticles
     {
+        /// <summary>
+        /// Centers of particles.
+        /// </summary>
         private int[,] centers;
 
+        /// <summary>
+        /// Diameters of particles.
+        /// </summary>
         private int[] diameters;
 
+        /// <summary>
+        /// Perimeters of particles.
+        /// </summary>
+        private int[] perimeters;
+
+        /// <summary>
+        /// Areas of particles.
+        /// </summary>
+        private int[] areas;
+
+        /// <summary>
+        /// Number of generated particles.
+        /// </summary>
         private int num;
 
+        /// <summary>
+        /// Bitmap canvas for drawing.
+        /// </summary>
         private Bitmap canvas;
 
+        /// <summary>
+        /// Easter egg.
+        /// </summary>
         private bool surprise;
 
+        /// <summary>
+        /// Canvas size.
+        /// </summary>
         private const int CANVAS_SIZE = 512;
 
-        private const int DIAMETER_MIN = 15;
+        /// <summary>
+        /// Minimal diameter of particle.
+        /// </summary>
+        public const int DIAMETER_MIN = 10;
 
-        private const int DIAMETER_MAX = 25;
+        /// <summary>
+        /// Maximal diameter of particle.
+        /// </summary>
+        public const int DIAMETER_MAX = 25;
 
+        /// <summary>
+        /// Random.
+        /// </summary>
         private Random rnd;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public GenerateParticles()
         {
 
         }
 
+        /// <summary>
+        /// Method for launching all necessary steps.
+        /// </summary>
+        /// <param name="num">number of particles</param>
+        /// <param name="surprise">easter egg</param>
         public void Generate(int num, bool surprise)
         {
             this.num = num;
@@ -45,8 +93,39 @@ namespace ParticleDetection.src
 
             DrawRectangle();
             DrawParticles();
+
+            perimeters = new int[num];
+            areas = new int[num];
+            CountPerimeters();
+            CountAreas();
+            
+        }
+
+        /// <summary>
+        /// Method counts perimeters of particles.
+        /// </summary>
+        private void CountPerimeters()
+        {
+            for (int i = 0; i < num; i++)
+            {
+                perimeters[i] = (int) (diameters[i] * Math.PI);
+            }
+        }
+
+        /// <summary>
+        /// Method counts areas of particles.
+        /// </summary>
+        private void CountAreas()
+        {
+            for (int i = 0; i < num; i++)
+            {
+                areas[i] = (int)((Math.PI * Math.Pow(diameters[i], 2)) /4);
+            }
         }
         
+        /// <summary>
+        /// Method draws basic black rectangle on canvas.
+        /// </summary>
         private void DrawRectangle()
         {
             using (Graphics graph = Graphics.FromImage(canvas))
@@ -57,7 +136,7 @@ namespace ParticleDetection.src
         }
 
         /// <summary>
-        /// 
+        /// Method draws all particles.
         /// </summary>
         private void DrawParticles()
         {
@@ -127,6 +206,15 @@ namespace ParticleDetection.src
             return rnd.Next(DIAMETER_MIN, DIAMETER_MAX+1);
         }
 
+        private void Debug()
+        {
+            Console.WriteLine("Perimeters and areas");
+            for (int i = 0; i < num; i++)
+            {
+                Console.WriteLine("Perimeter: " + perimeters[i] + ", area: " + areas[i]);
+            }
+            Console.WriteLine("--------------------------------");
+        }
 
         /* ********************* GETTERS *********************** */
 
@@ -146,6 +234,42 @@ namespace ParticleDetection.src
         public int[] GetDiameters()
         {
             return diameters;
+        }
+
+        /// <summary>
+        /// Returns an array of particles perimeters.
+        /// </summary>
+        /// <returns>perimeters</returns>
+        public int[] GetPerimeters()
+        {
+            return perimeters;
+        }
+
+        /// <summary>
+        /// Return length of perimeters array.
+        /// </summary>
+        /// <returns></returns>
+        public int GetPerimetersLength()
+        {
+            return perimeters.Length;
+        }
+
+        /// <summary>
+        /// Returns an array od particles areas.
+        /// </summary>
+        /// <returns>areas</returns>
+        public int[] GetAreas()
+        {
+            return areas;
+        }
+
+        /// <summary>
+        /// Returns length of areas array.
+        /// </summary>
+        /// <returns></returns>
+        public int GetAreasLength()
+        {
+            return areas.Length;
         }
 
         /// <summary>
