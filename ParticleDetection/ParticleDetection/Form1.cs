@@ -24,7 +24,7 @@ namespace ParticleDetection
         GenerateParticles gp = null;
 
 
-        RadioButton rb_hm;
+        RadioButton rb_sm;
 
         ParticleCountingSimpleMethod pc_sm      = null;
         ParticleCountingHistogramMethod pc_hm   = null;
@@ -34,7 +34,9 @@ namespace ParticleDetection
         {
             InitializeComponent();
             ChangeText();
-            LowerLimit.Checked = true;
+            average.Checked = true;
+            kBox.Text = "1";
+            lBox.Text = "1";
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -101,7 +103,7 @@ namespace ParticleDetection
                 return;
             }
 
-            pc_sm.SimpleMethod(gp.GetAreas());
+            pc_sm.SimpleMethod(gp.GetAreas(), rb_sm.Name);
 
             simpleMethod.Text = pc_sm.GetEstimate();
 
@@ -130,7 +132,7 @@ namespace ParticleDetection
                     return;
                 }
 
-                pc_hm.HistogramMethod(num, gp.GetAreas(), rb_hm);
+                pc_hm.HistogramMethod(num, gp.GetAreas());
 
                 histogramMethodResult.Text = pc_hm.GetEstimate();
 
@@ -148,41 +150,31 @@ namespace ParticleDetection
                 MessageBox.Show("Generate particles!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            // there is no user input, parameters will be set to default value
-            if(kBox.Text.Trim() == "" && kBox.Text.Trim() == "")
-            {
-                pc_c.Circularity(gp.GetPerimeters(), gp.GetAreas());
-            }
-            else
-            {
-                double k = 0, l = 0;
-                try
-                {
-                    k = double.Parse(kBox.Text.Trim());
-                }
-                catch (FormatException)
-                {
-                    MessageBox.Show("'k' parameter has to be a number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-                try
-                {
-                    l = double.Parse(lBox.Text.Trim());
-                }
-                catch (FormatException)
-                {
-                    MessageBox.Show("'l' parameter has to be a number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-                pc_c.SetK(k);
-                pc_c.SetL(l);
-                pc_c.Circularity(gp.GetPerimeters(), gp.GetAreas());
-            }
-
             
+            double k = 0, l = 0;
+            try
+            {
+                k = double.Parse(kBox.Text.Trim());
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("'k' parameter has to be a number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
+            try
+            {
+                l = double.Parse(lBox.Text.Trim());
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("'l' parameter has to be a number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
+            pc_c.SetK(k);
+            pc_c.SetL(l);
+
+            pc_c.Circularity(gp.GetPerimeters(), gp.GetAreas());
+            circularityResult.Text = pc_c.GetEstimate();
         }
 
         // =========================== FORM CHANGES =============================
@@ -201,7 +193,8 @@ namespace ParticleDetection
         {
             if (((RadioButton)sender).Checked)
             {
-                rb_hm = (RadioButton)sender;
+                rb_sm = (RadioButton)sender;
+                //Console.WriteLine(rb_sm.Name);
             }
         }
 

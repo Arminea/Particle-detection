@@ -27,8 +27,7 @@ namespace ParticleDetection.src
         /// </summary>
         /// <param name="numberOfintervals">number of intervals</param>
         /// <param name="areas">areas</param>
-        /// <param name="rb">chosen radio button</param>
-        public void HistogramMethod(int numberOfintervals, int[] areas, RadioButton rb)
+        public void HistogramMethod(int numberOfintervals, int[] areas)
         {
             if (estimate != 0)
                 estimate = 0; // set estimate to zero
@@ -70,11 +69,11 @@ namespace ParticleDetection.src
                 a.SetInterval(interval);
             }
 
-            //Debug();
+            Debug();
 
             int maxInterval = GetMaxIndex(auxArray, numberOfintervals);
             //Console.WriteLine("maxInterval: " + maxInterval);
-            double Aref = FindAref(auxArray, maxInterval, rb);
+            double Aref = FindAref(auxArray, maxInterval);
             
             Counting(Aref, auxArray);
         }
@@ -94,51 +93,21 @@ namespace ParticleDetection.src
         }
 
         /// <summary>
-        /// Return the reference area.
+        /// Returns the reference area.
         /// </summary>
         /// <param name="auxArray">auxiliary array</param>
         /// <param name="maxInterval">interval with max sum of areas</param>
-        /// <param name="rb">chosen radio button</param>
         /// <returns></returns>
-        private double FindAref(List<Aux> auxArray, int maxInterval, RadioButton rb)
+        private double FindAref(List<Aux> auxArray, int maxInterval)
         {
             double Aref = int.MaxValue;
 
-            if (rb.Name.Equals("LowerLimit"))
+            for (int j = 0; j < auxArray.Count; j++)
             {
-                for (int j = 0; j < auxArray.Count; j++)
-                {
-                    if (auxArray[j].GetInterval() == maxInterval && auxArray[j].GetArea() < Aref)
-                        Aref = auxArray[j].GetArea(); // lower limit of max interval
-                }
+                if (auxArray[j].GetInterval() == maxInterval && auxArray[j].GetArea() < Aref)
+                    Aref = auxArray[j].GetArea(); // lower limit of max interval
             }
-            else if (rb.Name.Equals("Average"))
-            {
-                int sum = 0;
-                foreach (Aux a in auxArray)
-                {
-                    sum += a.GetArea();
-                }
-                Aref = (double)(sum / auxArray.Count); // average
-            }
-            else if (rb.Name.Equals("Median"))
-            {
-                if (auxArray.Count % 2 == 0)
-                {
-                    int index = auxArray.Count / 2;
-                    Aref = (double)((auxArray.ElementAt(index - 1).GetArea() + auxArray.ElementAt(index).GetArea()) / 2); // median
-                }
-                else
-                {
-                    int index = auxArray.Count / 2; 
-                    Aref = (double) auxArray.ElementAt(index).GetArea(); // median
-                }
-            }
-            else if (rb.Name.Equals("Quartile"))
-            {
-                // DODELAT !!!!!!!!!!!!!!!!
-            }
-
+          
             Console.WriteLine(Aref);
             
             return Aref;
@@ -163,8 +132,15 @@ namespace ParticleDetection.src
                     if (a.GetInterval() == i)
                         sum++;
                 }
-                sumOfParticlesInInterval[i] = sum;
-                intervalnumber[i] = i;
+                try
+                {
+                    sumOfParticlesInInterval[i] = sum;
+                    intervalnumber[i] = i;
+                } catch(IndexOutOfRangeException e)
+                {
+                    continue;
+                }
+                
             }
             
             int max = int.MinValue;
