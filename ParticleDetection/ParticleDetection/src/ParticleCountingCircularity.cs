@@ -31,7 +31,11 @@ namespace ParticleDetection.src
         /// </summary>
         private const double CIRCULARITY = 4 * Math.PI;
 
-
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="perimeters">perimeters</param>
+        /// <param name="areas">areas</param>
         public void Circularity(int[] perimeters, int[] areas)
         {
             // volume - parameter of circularity

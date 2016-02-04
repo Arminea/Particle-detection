@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ParticleDetection.src
 {
     /// <summary>
-    /// 
+    /// Class for generating particles, their centers and diameters.
     /// </summary>
     class GenerateParticles
     {
@@ -46,6 +46,11 @@ namespace ParticleDetection.src
         /// Easter egg.
         /// </summary>
         private bool surprise;
+
+        /// <summary>
+        /// Bitmap canvas for easter egg.
+        /// </summary>
+        private Bitmap surpriseCanvas;
 
         /// <summary>
         /// Canvas size.
@@ -86,7 +91,10 @@ namespace ParticleDetection.src
             this.surprise = surprise;
             rnd = new Random();
             canvas = new Bitmap(CANVAS_SIZE, CANVAS_SIZE);
-            
+
+            if(surprise)
+                surpriseCanvas = new Bitmap(CANVAS_SIZE, CANVAS_SIZE);
+
             centers = new int[num, num];
             diameters = new int[num];
             RandomValues();
@@ -94,11 +102,12 @@ namespace ParticleDetection.src
             DrawRectangle();
             DrawParticles();
 
-            perimeters = new int[num];
-            areas = new int[num];
-            CountPerimeters();
-            CountAreas();
-            
+            //perimeters = new int[num];
+            //areas = new int[num];
+            //CountPerimeters();
+            //CountAreas();
+
+            //Debug();
         }
 
         /// <summary>
@@ -133,6 +142,15 @@ namespace ParticleDetection.src
                 Rectangle ImageSize = new Rectangle(0, 0, CANVAS_SIZE, CANVAS_SIZE);
                 graph.FillRectangle(Brushes.Black, ImageSize);
             }
+
+            if(surprise)
+            {
+                using (Graphics surpriseGraph = Graphics.FromImage(surpriseCanvas))
+                {
+                    Rectangle ImageSize = new Rectangle(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+                    surpriseGraph.FillRectangle(Brushes.Black, ImageSize);
+                }
+            }
         }
 
         /// <summary>
@@ -158,20 +176,29 @@ namespace ParticleDetection.src
             {
                 Rectangle redCircle = new Rectangle(x, y, diameter, diameter);
                 graph.FillEllipse(Brushes.Red, redCircle);
-
-                if(surprise == true && diameter == 25)
-                {
-                    Rectangle blackCircle = new Rectangle(x + 2, y + 2, diameter - 4, diameter - 4);
-                    graph.FillEllipse(Brushes.Black, blackCircle);
-
-                    Rectangle whiteCircle = new Rectangle(x + 7, y + 7, diameter - 14, diameter - 14);
-                    graph.FillEllipse(Brushes.White, whiteCircle);
-
-                    Rectangle redLine = new Rectangle(x + 11, y, 3, diameter);
-                    graph.FillRectangle(Brushes.Red, redLine);
-                }
-                
             }
+
+            if (surprise)
+            {
+                using(Graphics surpriseGraph = Graphics.FromImage(surpriseCanvas))
+                {
+                    Rectangle redCircle = new Rectangle(x, y, diameter, diameter);
+                    surpriseGraph.FillEllipse(Brushes.Red, redCircle);
+
+                    if (diameter == 25)
+                    {
+                        Rectangle blackCircle = new Rectangle(x + 2, y + 2, diameter - 4, diameter - 4);
+                        surpriseGraph.FillEllipse(Brushes.Black, blackCircle);
+
+                        Rectangle whiteCircle = new Rectangle(x + 7, y + 7, diameter - 14, diameter - 14);
+                        surpriseGraph.FillEllipse(Brushes.White, whiteCircle);
+
+                        Rectangle redLine = new Rectangle(x + 11, y, 3, diameter);
+                        surpriseGraph.FillRectangle(Brushes.Red, redLine);
+                    }
+                }
+            }
+
         }
 
         /// <summary>
@@ -279,6 +306,15 @@ namespace ParticleDetection.src
         public Bitmap GetCanvas()
         {
             return canvas;
+        }
+
+        /// <summary>
+        /// Returns a surprise canvas.
+        /// </summary>
+        /// <returns>canvas</returns>
+        public Bitmap GetSurpriseCanvas()
+        {
+            return surpriseCanvas;
         }
 
         /* ********************* SETTERS *********************** */

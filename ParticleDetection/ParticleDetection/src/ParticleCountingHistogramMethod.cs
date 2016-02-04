@@ -38,6 +38,7 @@ namespace ParticleDetection.src
             
             auxArray = new List<Aux>();
 
+            // finding frequency of areas
             foreach (int ar in areas)
             {
                 bool matchFound = false;
@@ -69,10 +70,10 @@ namespace ParticleDetection.src
                 a.SetInterval(interval);
             }
 
-            Debug();
+            //Debug();
 
             int maxInterval = GetMaxIndex(auxArray, numberOfintervals);
-            //Console.WriteLine("maxInterval: " + maxInterval);
+            
             double Aref = FindAref(auxArray, maxInterval);
             
             Counting(Aref, auxArray);
@@ -90,6 +91,7 @@ namespace ParticleDetection.src
                 if (a.GetArea() >= Aref)
                     estimate += (double)(a.GetFrequency() * (a.GetArea() / Aref));
             }
+           
         }
 
         /// <summary>
@@ -97,7 +99,7 @@ namespace ParticleDetection.src
         /// </summary>
         /// <param name="auxArray">auxiliary array</param>
         /// <param name="maxInterval">interval with max sum of areas</param>
-        /// <returns></returns>
+        /// <returns>A ref</returns>
         private double FindAref(List<Aux> auxArray, int maxInterval)
         {
             double Aref = int.MaxValue;
@@ -107,8 +109,6 @@ namespace ParticleDetection.src
                 if (auxArray[j].GetInterval() == maxInterval && auxArray[j].GetArea() < Aref)
                     Aref = auxArray[j].GetArea(); // lower limit of max interval
             }
-          
-            Console.WriteLine(Aref);
             
             return Aref;
         }
@@ -118,7 +118,7 @@ namespace ParticleDetection.src
         /// </summary>
         /// <param name="auxArray">auxiliary array</param>
         /// <param name="numberOfintervals">number of intervals</param>
-        /// <returns></returns>
+        /// <returns>interval with maximum sum of areas</returns>
         private int GetMaxIndex(List<Aux> auxArray, int numberOfintervals)
         {
             int[] sumOfParticlesInInterval = new int[auxArray.Count];

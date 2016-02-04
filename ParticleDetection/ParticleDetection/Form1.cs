@@ -26,6 +26,7 @@ namespace ParticleDetection
 
         RadioButton rb_sm;
 
+        ParticlesParameters particleParams      = null;
         ParticleCountingSimpleMethod pc_sm      = null;
         ParticleCountingHistogramMethod pc_hm   = null;
         ParticleCountingCircularity pc_c        = null;
@@ -69,13 +70,14 @@ namespace ParticleDetection
                 if (args.Length == 2 && args[1].Equals("deadpoolmode")) //hiden mode will appear when you enter "deadpoolmode" as an argument from command line
                 {
                     gp.Generate(num, true);
+                    invalidateNewImage(gp.GetSurpriseCanvas());
                 }
                 else
                 {
                     gp.Generate(num, false);
+                    invalidateNewImage(gp.GetCanvas());
                 }
                     
-                invalidateNewImage(gp.GetCanvas());
 
             } catch(FormatException)
             {
@@ -84,10 +86,14 @@ namespace ParticleDetection
             {
 
             }
-
             pc_sm = new ParticleCountingSimpleMethod();
             pc_hm = new ParticleCountingHistogramMethod();
-            pc_c  = new ParticleCountingCircularity();
+            pc_c = new ParticleCountingCircularity();
+
+            particleParams = new ParticlesParameters(gp.GetCanvas());
+
+            totalOfParticles.Text = particleParams.GetNumberOfParticles();
+
         }
 
         /// <summary>
@@ -103,7 +109,7 @@ namespace ParticleDetection
                 return;
             }
 
-            pc_sm.SimpleMethod(gp.GetAreas(), rb_sm.Name);
+            pc_sm.SimpleMethod(particleParams.GetAreas(), rb_sm.Name);
 
             simpleMethod.Text = pc_sm.GetEstimate();
 
@@ -132,7 +138,7 @@ namespace ParticleDetection
                     return;
                 }
 
-                pc_hm.HistogramMethod(num, gp.GetAreas());
+                pc_hm.HistogramMethod(num, particleParams.GetAreas());
 
                 histogramMethodResult.Text = pc_hm.GetEstimate();
 
@@ -173,7 +179,7 @@ namespace ParticleDetection
             pc_c.SetK(k);
             pc_c.SetL(l);
 
-            pc_c.Circularity(gp.GetPerimeters(), gp.GetAreas());
+            pc_c.Circularity(particleParams.GetPerimeters(), particleParams.GetAreas());
             circularityResult.Text = pc_c.GetEstimate();
         }
 

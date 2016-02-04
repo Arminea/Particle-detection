@@ -55,15 +55,17 @@ namespace ParticleDetection
             this.label5 = new System.Windows.Forms.Label();
             this.numberOfIntervals = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.histogram = new System.Windows.Forms.PictureBox();
             this.button5 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.totalOfParticles = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.histogram)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -320,20 +322,10 @@ namespace ParticleDetection
             this.label3.TabIndex = 9;
             this.label3.Text = "Number of intervals:";
             // 
-            // histogram
-            // 
-            this.histogram.Image = global::ParticleDetection.Properties.Resources.H1;
-            this.histogram.InitialImage = null;
-            this.histogram.Location = new System.Drawing.Point(181, 73);
-            this.histogram.Name = "histogram";
-            this.histogram.Size = new System.Drawing.Size(30, 30);
-            this.histogram.TabIndex = 8;
-            this.histogram.TabStop = false;
-            // 
             // button5
             // 
             this.button5.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.button5.Location = new System.Drawing.Point(15, 73);
+            this.button5.Location = new System.Drawing.Point(37, 73);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(160, 30);
             this.button5.TabIndex = 7;
@@ -344,7 +336,6 @@ namespace ParticleDetection
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.button5);
-            this.groupBox3.Controls.Add(this.histogram);
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.histogramMethodResult);
             this.groupBox3.Controls.Add(this.label3);
@@ -372,11 +363,41 @@ namespace ParticleDetection
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Circularity";
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.totalOfParticles);
+            this.groupBox5.Controls.Add(this.label1);
+            this.groupBox5.Location = new System.Drawing.Point(801, 244);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(241, 100);
+            this.groupBox5.TabIndex = 6;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Detection results";
+            // 
+            // totalOfParticles
+            // 
+            this.totalOfParticles.AutoSize = true;
+            this.totalOfParticles.Location = new System.Drawing.Point(124, 30);
+            this.totalOfParticles.Name = "totalOfParticles";
+            this.totalOfParticles.Size = new System.Drawing.Size(22, 13);
+            this.totalOfParticles.TabIndex = 1;
+            this.totalOfParticles.Text = ". . .";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(17, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(101, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Number of particles:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1051, 536);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -389,11 +410,12 @@ namespace ParticleDetection
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.histogram)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -422,7 +444,6 @@ namespace ParticleDetection
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.PictureBox histogram;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox numberOfIntervals;
@@ -441,5 +462,8 @@ namespace ParticleDetection
         private System.Windows.Forms.RadioButton thirdQuartile;
         private System.Windows.Forms.RadioButton median;
         private System.Windows.Forms.RadioButton average;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Label totalOfParticles;
+        private System.Windows.Forms.Label label1;
     }
 }

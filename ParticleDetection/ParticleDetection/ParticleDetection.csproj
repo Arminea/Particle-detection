@@ -78,6 +78,7 @@
     <Compile Include="src\ParticleCountingCircularity.cs" />
     <Compile Include="src\ParticleCountingSimpleMethod.cs" />
     <Compile Include="src\ParticleCountingHistogramMethod.cs" />
+    <Compile Include="src\ParticlesParameters.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
