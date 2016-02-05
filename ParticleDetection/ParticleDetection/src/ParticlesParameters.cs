@@ -116,7 +116,7 @@ namespace ParticleDetection.src
                     }
                 }
             }
-            Console.WriteLine("Nalezeno " + numberOfParticles + " castic.");
+            
             return particles;
         }
 
