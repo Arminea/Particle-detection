@@ -120,7 +120,7 @@ namespace ParticleDetection
         /// <param name="e"></param>
         private void SimpleMethod(object sender, EventArgs e)
         {
-            if(gp == null)
+            if(gp == null && bitmapForDrawing == null)
             {
                 MessageBox.Show("Generate particles!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -139,7 +139,7 @@ namespace ParticleDetection
         /// <param name="e"></param>
         private void HistogramMethod(object sender, EventArgs e)
         {
-            if (gp == null)
+            if (gp == null && bitmapForDrawing == null)
             {
                 MessageBox.Show("Generate particles!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -177,7 +177,7 @@ namespace ParticleDetection
         /// <param name="e"></param>
         private void CircularityMethod(object sender, EventArgs e)
         {
-            if (gp == null)
+            if (gp == null && bitmapForDrawing == null)
             {
                 MessageBox.Show("Generate particles!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

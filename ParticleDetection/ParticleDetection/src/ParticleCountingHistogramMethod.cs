@@ -70,11 +70,12 @@ namespace ParticleDetection.src
                 a.SetInterval(interval);
             }
 
-            //Debug();
+           Debug();
 
             int maxInterval = GetMaxIndex(auxArray, numberOfintervals);
             
             double Aref = FindAref(auxArray, maxInterval);
+            Console.WriteLine("Aref: " + Aref);
             
             Counting(Aref, auxArray);
         }
@@ -89,7 +90,13 @@ namespace ParticleDetection.src
             foreach (Aux a in auxArray)
             {
                 if (a.GetArea() >= Aref)
-                    estimate += (double)(a.GetFrequency() * (a.GetArea() / Aref));
+                {
+                    //estimate += (double)(a.GetFrequency() * (a.GetArea() / Aref));
+                    
+                    estimate += (double) (a.GetArea() / Aref);
+                   // Console.WriteLine(a.GetArea() + " : estimate " + estimate);
+                }
+                    
             }
            
         }
@@ -103,13 +110,17 @@ namespace ParticleDetection.src
         private double FindAref(List<Aux> auxArray, int maxInterval)
         {
             double Aref = int.MaxValue;
+            int sum = 0, count = 0;
 
             for (int j = 0; j < auxArray.Count; j++)
             {
-                if (auxArray[j].GetInterval() == maxInterval && auxArray[j].GetArea() < Aref)
-                    Aref = auxArray[j].GetArea(); // lower limit of max interval
+                if (auxArray[j].GetInterval() == maxInterval) {
+                    sum += auxArray[j].GetArea();
+                    count++;
+                    //Aref = auxArray[j].GetArea(); // lower limit of max interval
+                }
             }
-            
+            Aref = sum / count;
             return Aref;
         }
 
@@ -130,7 +141,7 @@ namespace ParticleDetection.src
                 foreach (Aux a in auxArray)
                 {
                     if (a.GetInterval() == i)
-                        sum++;
+                        sum += a.GetFrequency();
                 }
                 try
                 {
@@ -245,7 +256,7 @@ namespace ParticleDetection.src
             /// <summary>
             /// Compare method for sorting list by area.
             /// </summary>
-            /// <param name="a">area</param>
+            /// <param name="a">Aux object</param>
             /// <returns>value that specifies the relative ranking compared objects</returns>
             public int CompareTo(Aux a)
             {

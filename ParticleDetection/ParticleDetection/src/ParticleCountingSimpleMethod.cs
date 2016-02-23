@@ -45,6 +45,8 @@ namespace ParticleDetection.src
         {
             double Aref = 0;
 
+            Array.Sort(areas);
+
             if (buttonName.Equals("average"))
             {
                 foreach (int i in areas)
