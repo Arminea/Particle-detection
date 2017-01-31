@@ -13,6 +13,7 @@ Table of contents
     * [Histogram method](#histogram-method)
     * [Method of circular tracks](#method-of-circular-tracks)
   * [Results](#results)
+  * [User documentation](#user-documentation)
   * [Easter egg](#easter-egg)
 
 Particles' generator
@@ -118,7 +119,7 @@ where *C* is a constant. *C* is approximately *4&#960;*.
 <p align="center"><img src="https://cloud.githubusercontent.com/assets/5311408/22463918/b98d4b16-e7b4-11e6-8e6f-93a6514c6734.PNG"></p>
 
 4. The estimated number of particles *Particles<sub>i</sub>* in *A<sub>i</sub>* can be computed as:
-<p align="center"><img src="https://cloud.githubusercontent.com/assets/5311408/22464195/e292a71c-e7b5-11e6-9c79-3b1f2b247706.PNG"></p>,
+<p align="center"><img src="https://cloud.githubusercontent.com/assets/5311408/22464195/e292a71c-e7b5-11e6-9c79-3b1f2b247706.PNG">,</p>
 where *k* and *l* are constants that can be changed. Default value is 1.
 
 5. Then the estimated number of particles *Particles<sub>single</sub>* can be computed as:
@@ -126,6 +127,18 @@ where *k* and *l* are constants that can be changed. Default value is 1.
 
 Results
 --------
+
+User documentation
+-------------------
+User interface is devided to two sections. The first section includes a preview image. The second section includes all control buttons.
+
+1. In the first box you can enter a number of particles that will be generated on canvas. The box contains button for generating particles, saving and loading image. 
+2. The number of particles, perimeters and areas are computed after generating.
+3. In the *Simple method* box you can choose a method for *A<sub>ref</sub>* selection. 
+4. In the *Histogram method* box you can enter a number of intervals.
+5. In the *Circularity* box you can enter values for *k* and *l* constants.
+
+<p align="center"><img src="https://cloud.githubusercontent.com/assets/5311408/22464780/d539e9f6-e7b8-11e6-83a8-022acddd7749.PNG"></p>
 
 Easter egg
 -----------
