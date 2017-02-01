@@ -128,6 +128,36 @@ where *k* and *l* are constants that can be changed. Default value is 1.
 Results
 --------
 
+<table>
+<tr><td colspan="9"><b>Particles</b></td></tr>
+<tr><td>Generated</td><td> 10 </td><td> 50 </td><td> 75 </td><td> 100 </td><td> 125 </td><td> 150 </td><td> 175 </td><td> 200 </td></tr>
+<tr><td>Found</td><td> 10 </td><td> 47 </td><td> 60 </td><td> 82 </td><td> 89 </td><td> 102 </td><td> 114 </td><td> 125 </td></tr>
+</table>
+
+<table>
+<tr><td colspan="9"><b>Simple method</b></td></tr>
+<tr><td>Average</td><td> 10 </td><td> 47 </td><td> 60 </td><td> 82 </td><td> 88,99 </td><td> 102 </td><td> 113,9 </td><td> 124,9 </td></tr>
+<tr><td>Median</td><td> 10,14 </td><td> 48,33 </td><td> 67,65 </td><td> 83,33 </td><td> 103,46 </td><td> 122,03 </td><td> 143 </td><td> 158,8 </td></tr>
+<tr><td>Lower quartile</td><td> 15,65 </td><td> 80,11 </td><td> 132 </td><td> 157,54 </td><td> 195,58 </td><td> 271,62 </td><td> 318,27 </td><td> 255,8 </td></tr>
+<tr><td>Upper quartile</td><td> 8,63 </td><td> 35,23 </td><td> 39,74 </td><td> 69,28 </td><td> 66,56 </td><td> 70,31 </td><td> 90,1 </td><td> 94,61 </td></tr>
+</table>
+
+<table>
+<tr><td colspan="9"><b>Histogram method (param: number of intervals)</b></td></tr>
+<tr><td><i>n=3</i></td><td> 2,15 </td><td> 33,75 </td><td> 38,92 </td><td> 36,48 </td><td> 59,29 </td><td> 78,56 </td><td> 84 </td><td> 100 </td></tr>
+<tr><td><i>n=5</i></td><td> 6 </td><td> 42,93 </td><td> 59,28 </td><td> 59,93 </td><td> 91,93 </td><td> 128,44 </td><td> 129,3 </td><td> 147,42 </td></tr>
+<tr><td><i>n=8</i></td><td> 6 </td><td> 6,1 </td><td> 70,82 </td><td> 74,22 </td><td> 132 </td><td> 163,43 </td><td> 163,42 </td><td> 197,85 </td></tr>
+</table>
+
+<table>
+<tr><td colspan="9"><b>Histogram method (param: number of intervals)</b></td></tr>
+<tr><td><i>k</i>=1, <i>l</i>=1</td><td> 10 </td><td> 53 </td><td> 79 </td><td> 103 </td><td> 126 </td><td> 157 </td><td> 183 </td><td> 190 </td></tr>
+<tr><td><i>k</i>=1, <i>l</i>=10</td><td> 11 </td><td> 50 </td><td> 70 </td><td> 97 </td><td> 126 </td><td> 147 </td><td> 174 </td><td> 188 </td></tr>
+<tr><td><i>k</i>=1, <i>l</i>=50</td><td> 11 </td><td> 46 </td><td> 67 </td><td> 94 </td><td> 120 </td><td> 150 </td><td> 176 </td><td> 180 </td></tr>
+<tr><td><i>k</i>=10, <i>l</i>=1</td><td> 10 </td><td> 50 </td><td> 72 </td><td> 93 </td><td> 116 </td><td> 134 </td><td> 165 </td><td> 172 </td></tr>
+<tr><td><i>k</i>=50, <i>l</i>=1</td><td> 10 </td><td> 50 </td><td> 71 </td><td> 93 </td><td> 114 </td><td> 131 </td><td> 162 </td><td> 169 </td></tr>
+</table>
+
 User documentation
 -------------------
 User interface is devided to two sections. The first section includes a preview image. The second section includes all control buttons.
