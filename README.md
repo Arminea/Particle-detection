@@ -127,6 +127,13 @@ where *k* and *l* are constants that can be changed. Default value is 1.
 
 Results
 --------
+In the table below, one can see results for different number of particles. In the first section are compared the number of particles generated and the number of particles found. With the increasing number of particles generated is reduced the number of particles found. It is caused by overlapping of particles.
+
+Simple method had the best result with median. Lower and upper quartile proved to be not very useful.
+
+Histogram method proved to have better result with increasing number of intervals. But there was also a limit for that number. After that limit, the effectiveness of this method rapidly declined.
+
+Method of circular tracks had the best result with *k* and *l* = 1.
 
 <table>
 <tr><td colspan="9"><b>Particles</b></td></tr>
@@ -144,7 +151,7 @@ Results
 <tr><td><i>n=5</i></td><td> 6 </td><td> 42,93 </td><td> 59,28 </td><td> 59,93 </td><td> 91,93 </td><td> 128,44 </td><td> 129,3 </td><td> 147,42 </td></tr>
 <tr><td><i>n=8</i></td><td> 6 </td><td> 6,1 </td><td> 70,82 </td><td> 74,22 </td><td> 132 </td><td> 163,43 </td><td> 163,42 </td><td> 197,85 </td></tr>
 
-<tr><td colspan="9"><b>Histogram method (param: number of intervals)</b></td></tr>
+<tr><td colspan="9"><b>Method of circular tracks (params: <i>k</i> and <i>l</i>)</b></td></tr>
 <tr><td><i>k</i>=1, <i>l</i>=1</td><td> 10 </td><td> 53 </td><td> 79 </td><td> 103 </td><td> 126 </td><td> 157 </td><td> 183 </td><td> 190 </td></tr>
 <tr><td><i>k</i>=1, <i>l</i>=10</td><td> 11 </td><td> 50 </td><td> 70 </td><td> 97 </td><td> 126 </td><td> 147 </td><td> 174 </td><td> 188 </td></tr>
 <tr><td><i>k</i>=1, <i>l</i>=50</td><td> 11 </td><td> 46 </td><td> 67 </td><td> 94 </td><td> 120 </td><td> 150 </td><td> 176 </td><td> 180 </td></tr>
