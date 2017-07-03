@@ -31,11 +31,11 @@ namespace ParticleDetection.src
         {
             if (estimate != 0)
                 estimate = 0; // set estimate to zero
-
+            //PrintArray(areas);
             int min = GetMin(areas);
             int max = GetMax(areas);
-            double size = (max - min) / numberOfintervals;
-            
+            double size = (max - min) / (numberOfintervals);
+
             auxArray = new List<Aux>();
 
             // finding frequency of areas
@@ -57,7 +57,13 @@ namespace ParticleDetection.src
             }
 
             auxArray.Sort(); // sort array by areas
-            
+            double foo = auxArray.Count() / (double) numberOfintervals;
+
+            //Console.WriteLine("Foo: " + foo);
+            //double size = Math.Ceiling(foo);
+            Console.WriteLine("Min: " + min + ", max: " + max + ", size: " + size);
+            //Debug();
+
             foreach (Aux a in auxArray)
             {
                 int interval = 0;
@@ -70,10 +76,10 @@ namespace ParticleDetection.src
                 a.SetInterval(interval);
             }
 
-           Debug();
+            Debug();
 
             int maxInterval = GetMaxIndex(auxArray, numberOfintervals);
-            
+            Console.WriteLine("Max interval: " + maxInterval);
             double Aref = FindAref(auxArray, maxInterval);
             Console.WriteLine("Aref: " + Aref);
             
@@ -91,12 +97,9 @@ namespace ParticleDetection.src
             {
                 if (a.GetArea() >= Aref)
                 {
+                    estimate += (double)(a.GetArea() / Aref);
                     //estimate += (double)(a.GetFrequency() * (a.GetArea() / Aref));
-                    
-                    estimate += (double) (a.GetArea() / Aref);
-                   // Console.WriteLine(a.GetArea() + " : estimate " + estimate);
                 }
-                    
             }
            
         }
@@ -110,17 +113,13 @@ namespace ParticleDetection.src
         private double FindAref(List<Aux> auxArray, int maxInterval)
         {
             double Aref = int.MaxValue;
-            int sum = 0, count = 0;
 
             for (int j = 0; j < auxArray.Count; j++)
             {
-                if (auxArray[j].GetInterval() == maxInterval) {
-                    sum += auxArray[j].GetArea();
-                    count++;
-                    //Aref = auxArray[j].GetArea(); // lower limit of max interval
-                }
+                if (auxArray[j].GetInterval() == maxInterval && auxArray[j].GetArea() < Aref)
+                    Aref = auxArray[j].GetArea(); // lower limit of max interval
             }
-            Aref = sum / count;
+            
             return Aref;
         }
 
@@ -159,10 +158,11 @@ namespace ParticleDetection.src
 
             for (int s = 0; s < sumOfParticlesInInterval.Length; s++)
             {
-                if (sumOfParticlesInInterval[s] > max)
+                if (sumOfParticlesInInterval[s] >= max)
                 {
                     max = sumOfParticlesInInterval[s];
                     returnValue = s;
+                    Console.WriteLine("Interval: " + s + ", sum: " + sumOfParticlesInInterval[s]);
                 }
             }
 
@@ -218,6 +218,14 @@ namespace ParticleDetection.src
                 Console.WriteLine("Area " + auxArray.ElementAt(i).GetArea() + ": " + auxArray.ElementAt(i).GetInterval() + ", " + auxArray.ElementAt(i).GetFrequency());
             }
             Console.WriteLine("--------------");
+        }
+
+        private void PrintArray(int[] arr)
+        {
+            foreach (int a in arr)
+            {
+                Console.WriteLine("Area: " + a);
+            }
         }
 
         /// <summary>

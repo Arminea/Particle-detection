@@ -7,3 +7,6 @@ D:\GitHub\Particle-detection\ParticleDetection\ParticleDetection\obj\x86\Release
 D:\GitHub\Particle-detection\ParticleDetection\ParticleDetection\obj\x86\Release\ParticleDetection.csproj.GenerateResource.Cache
 D:\GitHub\Particle-detection\ParticleDetection\ParticleDetection\obj\x86\Release\ParticleDetection.exe
 D:\GitHub\Particle-detection\ParticleDetection\ParticleDetection\obj\x86\Release\ParticleDetection.pdb
+D:\Dropbox\FAV\ING\2.rocnik\AOS\semestralka\Particle-detection\ParticleDetection\ParticleDetection\bin\x86\Release\ParticleDetection.exe.config
+D:\Dropbox\FAV\ING\2.rocnik\AOS\semestralka\Particle-detection\ParticleDetection\ParticleDetection\obj\x86\Release\ParticleDetection.exe
+D:\Dropbox\FAV\ING\2.rocnik\AOS\semestralka\Particle-detection\ParticleDetection\ParticleDetection\obj\x86\Release\ParticleDetection.pdb
